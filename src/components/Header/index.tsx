@@ -97,11 +97,22 @@ const Header: React.FC = () => {
         }, 100)
     })
 
+    const offsetLeft: () => number = () => {
+        if (windowWidth < 375) {
+            return 20
+        }
+        if (windowWidth < 450) {
+            return 40
+        }
+
+        return 60
+    }
+
     const logoStyles = useSpring({
         opacity: logoOn ? '0.8' : '0',
         position: 'absolute',
         bottom: bannerOn ? `${logoPosition}px` : `20px`,
-        left: bannerOn ? '40px' : '20px',
+        left: bannerOn ? `${offsetLeft()}px` : `${offsetLeft()}px`,
         borderRadius: '50%',
         border: '1px solid rgba(255, 255, 255, 0.5)',
         height: bannerOn ? '200px' : '70px',
@@ -120,14 +131,14 @@ const Header: React.FC = () => {
 
     const bigTitleStyles = useSpring({
         position: 'absolute',
-        bottom: bannerOn ? `${logoPosition - 100}px` : '25px',
-        left: bannerOn ? '65px' : '-600px',
+        bottom: bannerOn ? `${logoPosition - 80}px` : '25px',
+        left: bannerOn ? `${offsetLeft() + 20}px` : '-600px',
         opacity: logoOn ? '0.8' : '0',
     })
     const smallTitleStyles = useSpring({
         position: 'absolute',
         bottom: bannerOn ? `${logoPosition - 100}px` : '25px',
-        left: bannerOn ? '3000px' : '120px',
+        left: bannerOn ? '3000px' : `${offsetLeft() + 70}px`,
         opacity: logoOn ? '0.8' : '0',
     })
 
